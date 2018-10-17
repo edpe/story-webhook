@@ -47,20 +47,32 @@ app.post("/", (req, res) => {
         console.log("story 3 chosen");
         break;
     }
-  } else if (result.interaction.name.substring === "end of story") {
-    switch(result.interaction.name) {
+  } else if (result.interaction.name.substring(0, 12) === "end of story") {
+    switch (result.interaction.name) {
       case "end of story 1":
-      console.log("increment story 1 completed count");
-      break;
+        console.log("increment story 1 completed count");
+        break;
       case "end of story 2":
-      console.log("increment story 2 completed count");
-      break;
+        console.log("increment story 2 completed count");
+        break;
       case "end of story 3":
-      console.log("increment story 3 completed count");
-      break;
+        console.log("increment story 3 completed count");
+        break;
     }
-
+  } else if (result.interaction.name.substring(0, 10) === "rate story") {
+    switch (result.interaction.name) {
+      case "rate story 1":
+        console.log("add rating of " + result.resolvedQuery + " to story 1");
+        break;
+      case "rate story 2":
+        console.log("add rating of " + result.resolvedQuery + " to story 2");
+        break;
+      case "rate story 2":
+        console.log("add rating of " + result.resolvedQuery + " to story 3");
+        break;
+    }
   }
+
   return res.json(response);
 });
 
