@@ -1,6 +1,6 @@
 "use strict";
 require("dotenv").config();
-const dbConnection = require('./connection');
+
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express().use(bodyParser.json()); // creates http server
@@ -15,7 +15,7 @@ app.get("/", (req, res) => {
     return res.sendStatus(401);
   }
 
-  // return challenge
+  // return challenge,
   return res.end(req.query.challenge);
 });
 
