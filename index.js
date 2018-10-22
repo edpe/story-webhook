@@ -1,5 +1,6 @@
 "use strict";
 require("dotenv").config();
+const dbConnection = require('./connection');
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express().use(bodyParser.json()); // creates http server
