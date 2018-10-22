@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/addaction-stories', {useNewUrlParser: true } )
+require("dotenv").config();
+mongoose.connect(process.env.MONOG_URL, {useNewUrlParser: true } )
 
 const connection = mongoose.connection;
 
