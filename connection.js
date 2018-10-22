@@ -1,18 +1,21 @@
+require('dotenv').config();
 const mongoose = require('mongoose');
-require("dotenv").config();
-mongoose.connect(process.env.MONOG_URL, {useNewUrlParser: true } )
+mongoose.connect(
+  process.env.MONGO_URL,
+  { useNewUrlParser: true }
+);
 
 const connection = mongoose.connection;
 
-connection.on('connected', function () {
+connection.on('connected', function() {
   console.log('connected to database');
 });
 
-connection.on('disconnected', function () {
+connection.on('disconnected', function() {
   console.log('disconnected from database');
 });
 
-connection.on('error', function (error) {
+connection.on('error', function(error) {
   console.log('database connection error', error);
 });
 
