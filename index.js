@@ -37,15 +37,15 @@ app.post("/", (req, res) => {
   };
 
   if (result.interaction.name.substring(0, 12) === "choose story") {
-    switch (result.resolvedQuery) {
-      case "read story 1":
-        console.log("story 1 chosen");
+    switch (result.interaction.name) {
+      case "choose story 1":
+        console.log("choose story 1");
         break;
-      case "read story 2":
-        console.log("story 2 chosen");
+      case "choose story 2":
+        console.log("choose story 2");
         break;
-      case "read story 3":
-        console.log("story 3 chosen");
+      case "choose story 3":
+        console.log("choose story 3");
         break;
     }
   } else if (result.interaction.name.substring(0, 12) === "end of story") {

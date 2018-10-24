@@ -1,5 +1,4 @@
 const StoryModel = require('./storyModel');
-const connection = require('./connection');
 
 function seedStories() {
   const stories = [

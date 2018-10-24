@@ -11,4 +11,6 @@ const storySchema = new Schema({
 
 const storyModel = connection.model('Story', storySchema);
 
+
+
 module.exports = storyModel;
