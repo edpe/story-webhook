@@ -1,13 +1,14 @@
 'use strict';
 require('dotenv').config();
-
+const Library = require('./library');
+const StoryModel = require('./storyModel');
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express().use(bodyParser.json()); // creates http server
 const token = process.env.TOKEN; // verification token
 const port = process.env.PORT;
 const ratings = {
-  'Really Helpful': 5,
+  'Really helpful': 5,
   'It helped a bit': 4,
   'It was ok': 3,
   'Not much': 2,
@@ -42,46 +43,53 @@ app.post('/', (req, res) => {
     ]
   };
 
+  const library = new Library(StoryModel);
+
   if (result.interaction.name.substring(0, 12) === 'choose story') {
     switch (result.interaction.name) {
-      case 'choose story 1':
-        console.log('choose story 1');
+      case 'choose story1':
+        library.logStoryChoice(result.interaction.name.substring(7, 13));
         break;
-      case 'choose story 2':
-        console.log('choose story 2');
+      case 'choose story2':
+        library.logStoryChoice(result.interaction.name.substring(7, 13));
         break;
-      case 'choose story 3':
-        console.log('choose story 3');
+      case 'choose story3':
+        library.logStoryChoice(result.interaction.name.substring(7, 13));
         break;
     }
   } else if (result.interaction.name.substring(0, 12) === 'end of story') {
     switch (result.interaction.name) {
-      case 'end of story 1':
-        console.log('increment story 1 completed count');
+      case 'end of story1':
+        library.logStoryCompleted(result.interaction.name.substring(7, 13));
         break;
-      case 'end of story 2':
-        console.log('increment story 2 completed count');
+      case 'end of story2':
+        library.logStoryCompleted(result.interaction.name.substring(7, 13));
         break;
-      case 'end of story 3':
-        console.log('increment story 3 completed count');
+      case 'end of story3':
+        library.logStoryCompleted(result.interaction.name.substring(7, 13));
         break;
     }
   } else if (result.interaction.name.substring(0, 10) === 'rate story') {
     switch (result.interaction.name) {
-      case 'rate story 1':
-        console.log(
-          'add rating of ' + ratings[result.resolvedQuery] + ' to story 1'
+      case 'rate story1':
+      console.log("resolved query", result.resolvedQuery)
+        library.addStoryRating(
+          result.interaction.name.substring(5, 11),
+          ratings[result.resolvedQuery]
         );
         break;
-      case 'rate story 2':
-        console.log(
-          'add rating of ' + ratings[result.resolvedQuery] + ' to story 2'
-        );
+      case 'rate story2':
+      console.log("resolved query", result.resolvedQuery)
+      library.addStoryRating(
+        result.interaction.name.substring(5, 11),
+        ratings[result.resolvedQuery]
+      );
         break;
-      case 'rate story 3':
-        console.log(
-          'add rating of ' + ratings[result.resolvedQuery] + ' to story 3'
-        );
+      case 'rate story3':
+      library.addStoryRating(
+        result.interaction.name.substring(5, 11),
+        ratings[result.resolvedQuery]
+      );
         break;
     }
   }
