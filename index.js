@@ -1,5 +1,6 @@
 'use strict';
 require('dotenv').config();
+const browserify = require('browserify-middleware');
 const Library = require('./library');
 const StoryModel = require('./storyModel');
 const express = require('express');
@@ -16,6 +17,10 @@ const ratings = {
 };
 
 const sessions = {};
+
+app.get('/js/charts.js', browserify(__dirname + '/charts.js'));
+
+app.use('/admin', express.static('client'))
 
 app.get('/', (req, res) => {
   // check if verification token is correct
