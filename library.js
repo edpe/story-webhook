@@ -18,6 +18,10 @@ class Library {
     );
   }
 
+  storyChoiceCount(story, findCount) {
+    return this.storyModel.findOne({ title: story }).exec();
+  }
+
   logStoryCompleted(story) {
     this.storyModel.findOneAndUpdate(
       { title: story },
@@ -34,7 +38,7 @@ class Library {
   }
 
   addStoryRating(story, rating) {
-    console.log(story, rating)
+    console.log(story, rating);
     this.storyModel.findOneAndUpdate(
       { title: story },
       { $push: { ratings: rating } },
