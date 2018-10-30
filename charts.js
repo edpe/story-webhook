@@ -5,7 +5,7 @@ const dataP = fetch('/stats/data.json').then(res => res.json());
 (async function() {
   const result = await dataP;
 
-  new Chart(document.getElementById('story-selected-chart'), {
+  new Chart(document.getElementById('selected-chart'), {
     type: 'pie',
     data: {
       labels: ["Matthew's story", "Steve's story", 'story3'],
@@ -25,7 +25,7 @@ const dataP = fetch('/stats/data.json').then(res => res.json());
     }
   });
 
-  new Chart(document.getElementById('story-completed-chart'), {
+  new Chart(document.getElementById('completed-chart'), {
     type: 'pie',
     data: {
       labels: ["Matthew's story", "Steve's story", 'story3'],
@@ -47,7 +47,7 @@ const dataP = fetch('/stats/data.json').then(res => res.json());
 
   const sumArray = (accumulator, currentValue) => accumulator + currentValue;
 
-  new Chart(document.getElementById('bar-chart-horizontal'), {
+  new Chart(document.getElementById('ratings-chart'), {
     type: 'horizontalBar',
     data: {
       labels: ["Matthew's story", "Steve's story", 'story3'],
