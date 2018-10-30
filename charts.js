@@ -8,7 +8,7 @@ const dataP = fetch('/stats/data.json').then(res => res.json());
   new Chart(document.getElementById('story-selected-chart'), {
     type: 'pie',
     data: {
-      labels: ["Matthew's story", "Steve's story1", 'story3'],
+      labels: ["Matthew's story", "Steve's story", 'story3'],
       datasets: [
         {
           label: 'Most Selected',
@@ -28,12 +28,12 @@ const dataP = fetch('/stats/data.json').then(res => res.json());
   new Chart(document.getElementById('story-completed-chart'), {
     type: 'pie',
     data: {
-      labels: ["Matthew's story", "Steve's story1", 'story3'],
+      labels: ["Matthew's story", "Steve's story", 'story3'],
       datasets: [
         {
           label: 'Most Read',
           backgroundColor: ['#3e95cd', '#8e5ea2', '#3cba9f'],
-          data: (await dataP).map(story => story.readCount)
+          data: result.map(story => story.readCount)
         }
       ]
     },
@@ -50,12 +50,12 @@ const dataP = fetch('/stats/data.json').then(res => res.json());
   new Chart(document.getElementById('bar-chart-horizontal'), {
     type: 'horizontalBar',
     data: {
-      labels: ["Matthew's story", "Steve's story1", 'story3'],
+      labels: ["Matthew's story", "Steve's story", 'story3'],
       datasets: [
         {
           label: 'Story Rating',
           backgroundColor: ['#3e95cd', '#8e5ea2', '#3cba9f'],
-          data: (await dataP).map(story => {
+          data: result.map(story => {
             if (!story.ratings.length) {
               return 0;
             } else {
