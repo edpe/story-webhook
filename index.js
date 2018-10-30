@@ -25,9 +25,9 @@ app.get('/js/charts.js', browserify(__dirname + '/charts.js'));
 app.use('/admin', express.static('client'));
 
 app.get('/stats/data.json', async (req, res, next) => {
-  const story1P = library.storyChoiceCount('story1');
-  const story2P = library.storyChoiceCount('story2');
-  const story3P = library.storyChoiceCount('story3');
+  const story1P = library.getStoryData('story1');
+  const story2P = library.getStoryData('story2');
+  const story3P = library.getStoryData('story3');
 
   let stories;
   try {

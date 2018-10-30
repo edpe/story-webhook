@@ -3,15 +3,17 @@ const Chart = require('chart.js');
 const dataP = fetch('/stats/data.json').then(res => res.json());
 
 (async function() {
+  const result = await dataP;
+
   new Chart(document.getElementById('story-selected-chart'), {
     type: 'pie',
     data: {
-      labels: ['story1', 'story2', 'story3'],
+      labels: ["Matthew's story", "Steve's story1", 'story3'],
       datasets: [
         {
-          label: 'Most read',
+          label: 'Most Selected',
           backgroundColor: ['#3e95cd', '#8e5ea2', '#3cba9f'],
-          data: (await dataP).map(story => story.selectedCount)
+          data: result.map(story => story.selectedCount)
         }
       ]
     },
@@ -22,30 +24,55 @@ const dataP = fetch('/stats/data.json').then(res => res.json());
       }
     }
   });
-})();
 
-new Chart(document.getElementById('story-completed-chart'), {
-  type: 'pie',
-  data: {
-    labels: ['Africa', 'Asia', 'dgdg', 'Latin America', 'North America'],
-    datasets: [
-      {
-        label: 'Population (millions)',
-        backgroundColor: [
-          '#3e95cd',
-          '#8e5ea2',
-          '#3cba9f',
-          '#e8c3b9',
-          '#c45850'
-        ],
-        data: [2478, 5267, 734, 784, 433]
+  new Chart(document.getElementById('story-completed-chart'), {
+    type: 'pie',
+    data: {
+      labels: ["Matthew's story", "Steve's story1", 'story3'],
+      datasets: [
+        {
+          label: 'Most Read',
+          backgroundColor: ['#3e95cd', '#8e5ea2', '#3cba9f'],
+          data: (await dataP).map(story => story.readCount)
+        }
+      ]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Number of times each story was completed'
       }
-    ]
-  },
-  options: {
-    title: {
-      display: true,
-      text: 'Predicted world population (millions) in 2050'
     }
-  }
-});
+  });
+
+  const sumArray = (accumulator, currentValue) => accumulator + currentValue;
+
+  new Chart(document.getElementById('bar-chart-horizontal'), {
+    type: 'horizontalBar',
+    data: {
+      labels: ["Matthew's story", "Steve's story1", 'story3'],
+      datasets: [
+        {
+          label: 'Story Rating',
+          backgroundColor: ['#3e95cd', '#8e5ea2', '#3cba9f'],
+          data: (await dataP).map(story => {
+            if (!story.ratings.length) {
+              return 0;
+            } else {
+              const ratingsSum = story.ratings.reduce(sumArray);
+              const ratingsAvg = ratingsSum / story.ratings.length;
+              return ratingsAvg;
+            }
+          })
+        }
+      ]
+    },
+    options: {
+      legend: { display: false },
+      title: {
+        display: true,
+        text: 'Average rating for each story'
+      }
+    }
+  });
+})();

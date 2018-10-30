@@ -18,10 +18,6 @@ class Library {
     );
   }
 
-  storyChoiceCount(story, findCount) {
-    return this.storyModel.findOne({ title: story }).exec();
-  }
-
   logStoryCompleted(story) {
     this.storyModel.findOneAndUpdate(
       { title: story },
@@ -52,6 +48,11 @@ class Library {
       }
     );
   }
+
+  getStoryData(story, findCount) {
+    return this.storyModel.findOne({ title: story }).exec();
+  }
+
 }
 
 module.exports = Library;
