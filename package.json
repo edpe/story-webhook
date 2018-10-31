@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.js",
+    "dev": "nodemon --inspect index.js",
     "start": "node index.js",
     "seed": "node seed.js"
   },
@@ -13,10 +13,12 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "chart.js": "^2.7.3",
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "mongoose": "^5.3.4",
-    "ngrok": "^3.1.0"
+    "ngrok": "^3.1.0",
+    "browserify-middleware": "8.1.1"
   },
   "devDependencies": {
     "nodemon": "^1.18.4"

@@ -1,5 +1,6 @@
 'use strict';
 require('dotenv').config();
+const browserify = require('browserify-middleware');
 const Library = require('./library');
 const StoryModel = require('./storyModel');
 const express = require('express');
@@ -16,6 +17,29 @@ const ratings = {
 };
 
 const sessions = {};
+
+const library = new Library(StoryModel);
+
+app.get('/js/charts.js', browserify(__dirname + '/charts.js'));
+
+app.use('/admin', express.static('client'));
+
+app.get('/stats/data.json', async (req, res, next) => {
+  const story1P = library.getStoryData('story1');
+  const story2P = library.getStoryData('story2');
+  const story3P = library.getStoryData('story3');
+
+  let stories;
+  try {
+    stories = await Promise.all([story1P, story2P, story3P]);
+  } catch(e) {
+    next(e);
+
+    return e;
+  }
+
+  res.json(stories);
+});
 
 app.get('/', (req, res) => {
   // check if verification token is correct
@@ -42,8 +66,6 @@ app.post('/', (req, res) => {
       }
     ]
   };
-
-  const library = new Library(StoryModel);
 
   if (result.interaction.name.substring(0, 12) === 'choose story') {
     switch (result.interaction.name) {
@@ -72,24 +94,24 @@ app.post('/', (req, res) => {
   } else if (result.interaction.name.substring(0, 10) === 'rate story') {
     switch (result.interaction.name) {
       case 'rate story1':
-      console.log("resolved query", result.resolvedQuery)
+        console.log('resolved query', result.resolvedQuery);
         library.addStoryRating(
           result.interaction.name.substring(5, 11),
           ratings[result.resolvedQuery]
         );
         break;
       case 'rate story2':
-      console.log("resolved query", result.resolvedQuery)
-      library.addStoryRating(
-        result.interaction.name.substring(5, 11),
-        ratings[result.resolvedQuery]
-      );
+        console.log('resolved query', result.resolvedQuery);
+        library.addStoryRating(
+          result.interaction.name.substring(5, 11),
+          ratings[result.resolvedQuery]
+        );
         break;
       case 'rate story3':
-      library.addStoryRating(
-        result.interaction.name.substring(5, 11),
-        ratings[result.resolvedQuery]
-      );
+        library.addStoryRating(
+          result.interaction.name.substring(5, 11),
+          ratings[result.resolvedQuery]
+        );
         break;
     }
   }
