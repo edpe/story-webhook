@@ -2,6 +2,9 @@
   "name": "story-webhook",
   "version": "1.0.0",
   "description": "storybot webhook",
+  "engines": {
+    "node": "10.9.0"
+  },
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

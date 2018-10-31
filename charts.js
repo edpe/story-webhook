@@ -21,7 +21,11 @@ const dataP = fetch('/stats/data.json').then(res => res.json());
       title: {
         display: true,
         text: 'Number of times each story was chosen'
+      },
+      legend: {
+        position: 'left'
       }
+
     }
   });
 
@@ -41,6 +45,9 @@ const dataP = fetch('/stats/data.json').then(res => res.json());
       title: {
         display: true,
         text: 'Number of times each story was completed'
+      },
+      legend: {
+        position: 'left'
       }
     }
   });
@@ -68,6 +75,13 @@ const dataP = fetch('/stats/data.json').then(res => res.json());
       ]
     },
     options: {
+      scales: {
+            xAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        },
       legend: { display: false },
       title: {
         display: true,
