@@ -68,6 +68,13 @@ const dataP = fetch('/stats/data.json').then(res => res.json());
       ]
     },
     options: {
+      scales: {
+            xAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        },
       legend: { display: false },
       title: {
         display: true,
