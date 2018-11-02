@@ -7,7 +7,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express().use(bodyParser.json()); // creates http server
 const token = process.env.TOKEN; // verification token
-const port = process.env.PORT;
+
 const ratings = {
   'Really helpful': 5,
   'It helped a bit': 4,
@@ -53,7 +53,7 @@ app.get('/', (req, res) => {
 app.post('/', (req, res) => {
   // check if verification token is correct
   if (req.query.token !== token) {
-    return res.sendStatus(401);
+    return res.sendStatus(200);
   }
 
   const result = req.body.result;
@@ -89,7 +89,7 @@ app.post('/', (req, res) => {
         break;
       case 'end of story3':
         library.logStoryCompleted(result.interaction.name.substring(7, 13));
-        break;
+        break;e.exports = app;
     }
   } else if (result.interaction.name.substring(0, 10) === 'rate story') {
     switch (result.interaction.name) {
@@ -119,4 +119,4 @@ app.post('/', (req, res) => {
   return res.json(response);
 });
 
-app.listen(port, () => console.log('[BotEngine] Webhook is listening'));
+module.exports = app;
