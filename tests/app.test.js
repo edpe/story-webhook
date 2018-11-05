@@ -32,7 +32,7 @@ describe('Test the admin path', () => {
   test('It should call the express.static method', () => {
     const express = require('express');
 
-    let express.static = jest.fn();
+    express.static = jest.fn();
 
 
 
