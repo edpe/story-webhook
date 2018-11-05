@@ -12,7 +12,7 @@ const dataP = fetch('/stats/data.json').then(res => res.json());
       datasets: [
         {
           label: 'Most Selected',
-          backgroundColor: ['#202666', '#FFE400', '#e0eefb', '#80398D'],
+          backgroundColor: ['#202666', '#FFE400', '#E74D1C', '#80398D'],
           data: result.map(story => story.selectedCount)
         }
       ]
@@ -36,7 +36,7 @@ const dataP = fetch('/stats/data.json').then(res => res.json());
       datasets: [
         {
           label: 'Most Read',
-          backgroundColor: ['#202666', '#FFE400', '#e0eefb', '#80398D'],
+          backgroundColor: ['#202666', '#FFE400', '#E74D1C', '#80398D'],
           data: result.map(story => story.readCount)
         }
       ]
@@ -61,7 +61,7 @@ const dataP = fetch('/stats/data.json').then(res => res.json());
       datasets: [
         {
           label: 'Story Rating',
-          backgroundColor: ['#202666', '#FFE400', '#e0eefb', '#80398D'],
+          backgroundColor: ['#202666', '#FFE400', '#E74D1C', '#80398D'],
           data: result.map(story => {
             if (!story.ratings.length) {
               return 0;
