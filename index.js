@@ -59,13 +59,7 @@ app.post('/', (req, res) => {
 
   const result = req.body.result;
   const response = {
-    sessionAttributes: { save: 'me' },
-    responses: [
-      {
-        type: 'text',
-        elements: ['']
-      }
-    ]
+    parameters: { save: 'me' },
   };
 
   if (result.interaction.name.substring(0, 12) === 'choose story') {
