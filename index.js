@@ -29,15 +29,27 @@ app.get('/stats/data.json', async (req, res, next) => {
   const story2P = library.getStoryData('story2');
   const story3P = library.getStoryData('story3');
   const story4P = library.getStoryData('story4');
+
+  let stories;
+  try {
+    stories = await Promise.all([story1P, story2P, story3P, story4P]);
+  } catch (e) {
+    next(e);
+
+    return e;
+  }
+
+  res.json(stories);
+});
+
+app.get('/ooh_stats/data.json', async (req, res, next) => {
   const ooh_story1P = library.getStoryData('ooh_story1');
   const ooh_story2P = library.getStoryData('ooh_story2');
   const ooh_story3P = library.getStoryData('ooh_story3');
   const ooh_story4P = library.getStoryData('ooh_story4');
 
-  let stories;
   let ooh_stories;
   try {
-    stories = await Promise.all([story1P, story2P, story3P, story4P]);
     ooh_stories = await Promise.all([
       ooh_story1P,
       ooh_story2P,
@@ -50,7 +62,7 @@ app.get('/stats/data.json', async (req, res, next) => {
     return e;
   }
 
-  res.json(stories);
+  res.json(ooh_stories);
 });
 
 app.get('/', (req, res) => {
