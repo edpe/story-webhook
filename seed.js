@@ -5,7 +5,11 @@ function seedStories() {
     { title: 'story1', selectedCount: '0', readCount: '0', ratings: [] },
     { title: 'story2', selectedCount: '0', readCount: '0', ratings: [] },
     { title: 'story3', selectedCount: '0', readCount: '0', ratings: [] },
-    { title: 'story4', selectedCount: '0', readCount: '0', ratings: [] }
+    { title: 'story4', selectedCount: '0', readCount: '0', ratings: [] },
+    { title: 'ooh_story1', selectedCount: '0', readCount: '0', ratings: [] },
+    { title: 'ooh_story2', selectedCount: '0', readCount: '0', ratings: [] },
+    { title: 'ooh_story3', selectedCount: '0', readCount: '0', ratings: [] },
+    { title: 'ooh_story4', selectedCount: '0', readCount: '0', ratings: [] }
   ];
   for (story of stories) {
     var newStory = new StoryModel(story);

@@ -33,13 +33,36 @@ app.get('/stats/data.json', async (req, res, next) => {
   let stories;
   try {
     stories = await Promise.all([story1P, story2P, story3P, story4P]);
-  } catch(e) {
+  } catch (e) {
     next(e);
 
     return e;
   }
 
   res.json(stories);
+});
+
+app.get('/ooh_stats/data.json', async (req, res, next) => {
+  const ooh_story1P = library.getStoryData('ooh_story1');
+  const ooh_story2P = library.getStoryData('ooh_story2');
+  const ooh_story3P = library.getStoryData('ooh_story3');
+  const ooh_story4P = library.getStoryData('ooh_story4');
+
+  let ooh_stories;
+  try {
+    ooh_stories = await Promise.all([
+      ooh_story1P,
+      ooh_story2P,
+      ooh_story3P,
+      ooh_story4P
+    ]);
+  } catch (e) {
+    next(e);
+
+    return e;
+  }
+
+  res.json(ooh_stories);
 });
 
 app.get('/', (req, res) => {
@@ -59,7 +82,7 @@ app.post('/', (req, res) => {
 
   const result = req.body.result;
   const response = {
-    parameters: { save: 'me' },
+    parameters: { save: 'me' }
   };
 
   if (result.interaction.name.substring(0, 12) === 'choose story') {

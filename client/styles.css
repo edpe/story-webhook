@@ -6,8 +6,10 @@ h1 {
   text-align: center;
   font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
   color: #666666;
-  padding-bottom: 50px;
+  padding-top: 10px;
+  padding-bottom: 25px;
 }
+
 
 .wrapper {
   display: grid;
@@ -24,6 +26,20 @@ h1 {
   grid-row: 1;
 }
 .ratings {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+
+.ooh_selected {
+  grid-column: 1;
+  grid-row: 1;
+}
+.ooh_read {
+  grid-column: 2;
+  grid-row: 1;
+}
+.ooh_ratings {
   grid-column: 3;
   grid-row: 1;
 }
