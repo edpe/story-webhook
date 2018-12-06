@@ -29,10 +29,11 @@ app.get('/stats/data.json', async (req, res, next) => {
   const story2P = library.getStoryData('story2');
   const story3P = library.getStoryData('story3');
   const story4P = library.getStoryData('story4');
+  const story5P = library.getStoryData('story5');
 
   let stories;
   try {
-    stories = await Promise.all([story1P, story2P, story3P, story4P]);
+    stories = await Promise.all([story1P, story2P, story3P, story4P, story5P]);
   } catch (e) {
     next(e);
 
@@ -99,6 +100,9 @@ app.post('/', (req, res) => {
       case 'choose story4':
         library.logStoryChoice(result.interaction.name.substring(7, 13));
         break;
+      case 'choose story5':
+        library.logStoryChoice(result.interaction.name.substring(7, 13));
+        break;
     }
   } else if (result.interaction.name.substring(0, 12) === 'end of story') {
     switch (result.interaction.name) {
@@ -114,18 +118,19 @@ app.post('/', (req, res) => {
       case 'end of story4':
         library.logStoryCompleted(result.interaction.name.substring(7, 13));
         break;
+      case 'end of story5':
+        library.logStoryCompleted(result.interaction.name.substring(7, 13));
+        break;
     }
   } else if (result.interaction.name.substring(0, 10) === 'rate story') {
     switch (result.interaction.name) {
       case 'rate story1':
-        console.log('resolved query', result.resolvedQuery);
         library.addStoryRating(
           result.interaction.name.substring(5, 11),
           ratings[result.resolvedQuery]
         );
         break;
       case 'rate story2':
-        console.log('resolved query', result.resolvedQuery);
         library.addStoryRating(
           result.interaction.name.substring(5, 11),
           ratings[result.resolvedQuery]
@@ -138,6 +143,12 @@ app.post('/', (req, res) => {
         );
         break;
       case 'rate story4':
+        library.addStoryRating(
+          result.interaction.name.substring(5, 11),
+          ratings[result.resolvedQuery]
+        );
+        break;
+      case 'rate story5':
         library.addStoryRating(
           result.interaction.name.substring(5, 11),
           ratings[result.resolvedQuery]
