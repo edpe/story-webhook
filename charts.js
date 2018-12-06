@@ -11,14 +11,15 @@ const ooh_dataP = fetch('/ooh_stats/data.json').then(res => res.json());
     data: {
       labels: [
         "Matthew's story",
-        "Steve's story",
+        "Sarah's story",
         "Jean's story",
-        "Morgan's story"
+        "Morgan's story",
+        "Liams's story"
       ],
       datasets: [
         {
           label: 'Most Selected',
-          backgroundColor: ['#202666', '#FFE400', '#E74D1C', '#80398D'],
+          backgroundColor: ['#202666', '#FFE400', '#E74D1C', '#80398D', '#BC0067'],
           data: result.map(story => story.selectedCount)
         }
       ]
@@ -39,14 +40,15 @@ const ooh_dataP = fetch('/ooh_stats/data.json').then(res => res.json());
     data: {
       labels: [
         "Matthew's story",
-        "Steve's story",
+        "Sarah's story",
         "Jean's story",
-        "Morgan's story"
+        "Morgan's story",
+        "Liams's story"
       ],
       datasets: [
         {
           label: 'Most Read',
-          backgroundColor: ['#202666', '#FFE400', '#E74D1C', '#80398D'],
+          backgroundColor: ['#202666', '#FFE400', '#E74D1C', '#80398D', '#BC0067'],
           data: result.map(story => story.readCount)
         }
       ]
@@ -69,14 +71,15 @@ const ooh_dataP = fetch('/ooh_stats/data.json').then(res => res.json());
     data: {
       labels: [
         "Matthew's story",
-        "Steve's story",
+        "Sarah's story",
         "Jean's story",
-        "Morgan's story"
+        "Morgan's story",
+        "Liams's story"
       ],
       datasets: [
         {
           label: 'Story Rating',
-          backgroundColor: ['#202666', '#FFE400', '#E74D1C', '#80398D'],
+          backgroundColor: ['#202666', '#FFE400', '#E74D1C', '#80398D', '#BC0067'],
           data: result.map(story => {
             if (!story.ratings.length) {
               return 0;
